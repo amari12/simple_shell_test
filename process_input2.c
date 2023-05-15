@@ -31,6 +31,6 @@ void split_input(char *input, char *args[])
 		args[i] = strtok(NULL, " ");
 		i++;
 	} while (args[i] != NULL);
-
+	args[i] = NULL; /*helps?*/
 }
 

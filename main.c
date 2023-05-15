@@ -13,6 +13,7 @@ int main(int argc __attribute__((unused)),
 	       	char *argv[] __attribute__((unused)))
 {
 	char input[SIZE];
+	int i;
 	/*char *arg, *cmd, *args[3];*/
 	/*char *cmd = NULL;*/
 	char *args[ARGS_SIZE];
@@ -46,7 +47,11 @@ int main(int argc __attribute__((unused)),
 		/*split cmd and arg*/
 		split_input(input, args);
 		/*cmd = args[0];*/
-
+		
+		/*test*/
+		for (i = 0; args[i] != NULL; i++)
+			printf("Input %i: %s ", i, args[i]);
+		printf("\n");
 		/*cmd = strtok(input, " ");*/
 		/*arg = strtok(NULL, " ");*/
 		
