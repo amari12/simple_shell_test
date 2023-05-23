@@ -90,3 +90,28 @@ void change_dir(char *args[])
 	/*printf("current dir: %s\n", current);*/
 }
 
+/**
+ * check_comments - checks for comments and removes them
+ * @input: input string
+ * Return: void
+ */
+
+void check_comments(char *input)
+{
+	size_t i;
+	int found = -1;
+
+	for (i = 0; i < strlen(input); i++)
+	{ /*look for comment #*/
+		if (input[i] == '#')
+		{
+			found = i;
+			break;
+		}
+	}
+	if (found != -1)
+	{ /*comment found*/
+		input[found] = '\0';
+	} /*terminate string at #*/
+}
+

@@ -43,14 +43,13 @@ int main(int argc __attribute__((unused)),
 			/*write(STDOUT_FILENO, &newline, 1);*/
 			break;
 		}
-		split_input(input, args); /*get args list*/
+		check_comments(input); /*search & handle comments*/
+		split_input(input, args); /*separate input -> args list*/
 		cmd = args[0];
-		/*handle builtin*/
-		check = handle_builtins(args, environ);
+		check = handle_builtins(args, environ); /*handle builtins*/
 		if (check == 1)
-			continue; /*env builtin or cd*/
-		/*fork - child process*/
-		forking(input, args, cmd, path);
+			continue; /*env builtin or cd -> restart loop*/
+		forking(input, args, cmd, path); /*fork and exe child process*/
 	} /*show prompt*/
 	free(input);
 	return (0);

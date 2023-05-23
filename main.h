@@ -21,5 +21,6 @@ void forking(char *input, char *args[], char *cmd, char *path);
 /*file: handle_bi.c*/
 int handle_builtins(char *args[], char **environ);
 void change_dir(char *args[]);
+void check_comments(char *input);
 
 #endif
