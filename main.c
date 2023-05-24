@@ -19,7 +19,7 @@ int main(int argc __attribute__((unused)),
 	/*int i;*/
 	/*char newline = '\n';*/
 	char *exit_msg = "EOF\n...\n";
-	char /**arg,*/ *cmd;
+	char *cmd;
 	char *args[ARGS_SIZE];
 	int exit_loop = 0;
 	char *path; /*, *temp;*/

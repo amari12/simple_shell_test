@@ -43,8 +43,7 @@ void get_input(char **input)
 void get_input2(char **input)
 {
 	static char buffer[SIZE];
-	static int index = 0;
-	static int read_size = 0;
+	static int index, read_size;
 	char *temp;
 	int newline_i, j;
 
@@ -54,10 +53,8 @@ void get_input2(char **input)
 		if (index >= read_size) /*if buffer empty, read input*/
 		{
 			read_size = read(STDIN_FILENO, buffer, SIZE);
-			if (read_size == 0)
-			{ /*eof*/
+			if (read_size == 0) /*EOF*/
 				break; /*handled in main.c*/
-			}
 			else if (read_size < 0)
 			{ /*error reading input*/
 				perror("Error reading input");
@@ -78,19 +75,12 @@ void get_input2(char **input)
 		}
 		*input = temp;
 		for (j = 0; index + j < newline_i; j++) /*add content of buffer to input*/
-		{
 			(*input)[j] = buffer[index + j];
-		}
 		(*input)[j] = '\0'; /*null terminator at end*/
 		index = newline_i + 1; /*move index to next char after newline char*/
-		if (newline_i < read_size)
-		{
+		if (newline_i < read_size ||
+				(new_line == read_size && buffer[new_line - 1] == '\n'))
 			return;
-		}
-		else if (newline_i == read_size && buffer[newline_i - 1] == '\n')
-		{
-			return;
-		}
 	} /*while*/
 } /*get_input 2*/
 
@@ -163,7 +153,6 @@ void forking(char *input, char *args[], char *cmd, char *path)
 		} /*while*/
 		if (full_path == NULL)
 		{ /*cmd not found in path*/
-			/*printf("Command not found in PATH\n");*/
 			perror("Command not found in PATH");
 			exit(EXIT_FAILURE);
 		}
