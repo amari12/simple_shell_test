@@ -79,7 +79,7 @@ void get_input2(char **input)
 		(*input)[j] = '\0'; /*null terminator at end*/
 		index = newline_i + 1; /*move index to next char after newline char*/
 		if (newline_i < read_size ||
-				(new_line == read_size && buffer[new_line - 1] == '\n'))
+				(newline_i == read_size && buffer[newline_i - 1] == '\n'))
 			return;
 	} /*while*/
 } /*get_input 2*/
